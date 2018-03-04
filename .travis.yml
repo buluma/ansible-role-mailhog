@@ -4,8 +4,8 @@ services: docker
 env:
   - distro: centos7
   - distro: centos6
-  - distro: ubuntu1604
-  - distro: ubuntu1404
+#  - distro: ubuntu1604
+#  - distro: ubuntu1404
 
 script:
   # Configure test script so we can run extra tests after playbook is run.
@@ -13,7 +13,7 @@ script:
   - export cleanup=false
 
   # Download test shim.
-  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/geerlingguy/73ef1e5ee45d8694570f334be385e181/raw/
+  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/buluma/3e4a443e0e2cfdffa9137edff909917e/raw/
   - chmod +x ${PWD}/tests/test.sh
 
   # Run tests.
