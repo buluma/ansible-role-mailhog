@@ -1,6 +1,6 @@
 # Ansible Role: MailHog
 
-[![Build Status](https://travis-ci.org/buluma/ansible-role-mailhog.svg?branch=master)](https://travis-ci.org/buluma/ansible-role-mailhog)
+[![CI](https://github.com/buluma/ansible-role-mailhog/workflows/CI/badge.svg?event=push)](https://github.com/buluma/ansible-role-mailhog/actions?query=workflow%3ACI)
 
 Installs [MailHog](https://github.com/mailhog/MailHog), a Go-based SMTP server and web UI/API for displaying captured emails, on RedHat or Debian-based linux systems.
 
@@ -24,7 +24,11 @@ Available variables are listed below, along with default values (see `defaults/m
 
 The directory into which the MailHog binary will be installed.
 
-    mailhog_binary_url: https://github.com/mailhog/MailHog/releases/download/v0.2.1/MailHog_linux_amd64
+    mailhog_version: 1.0.0
+
+The version of MailHog that will be installed. You can find the latest version by visiting the [MailHog project releases page](https://github.com/mailhog/MailHog/releases).
+
+    mailhog_binary_url: "https://github.com/mailhog/MailHog/releases/download/v{{ mailhog_version }}/MailHog_linux_amd64"
 
 The MailHog binary that will be installed. You can find the latest version or a 32-bit version by visiting the [MailHog project releases page](https://github.com/mailhog/MailHog/releases).
 
@@ -32,7 +36,11 @@ The MailHog binary that will be installed. You can find the latest version or a 
 
 The path to `daemonize`, which is used to launch MailHog via init script.
 
-    mhsendmail_binary_url: https://github.com/mailhog/mhsendmail/releases/download/v0.2.0/mhsendmail_linux_amd64
+    mhsendmail_version: 0.2.0
+    
+The version of the mhsendmail binary that will be installed. You can find the latest version by visiting the [mhsendmail project releases page](https://github.com/mailhog/mhsendmail/releases).
+
+    mhsendmail_binary_url: "https://github.com/mailhog/mhsendmail/releases/download/v{{ mhsendmail_version }}/mhsendmail_linux_amd64"
 
 The mhsendmail binary that will be installed. You can find the latest version or a 32-bit version by visiting the [mhsendmail project releases page](https://github.com/mailhog/mhsendmail/releases).
 
@@ -44,7 +52,7 @@ The mhsendmail binary that will be installed. You can find the latest version or
 
     - hosts: servers
       roles:
-        - { role: geerlingguy.mailhog }
+        - { role: buluma.mailhog }
 
 ## License
 

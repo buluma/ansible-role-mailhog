@@ -3,23 +3,25 @@ dependencies:
   - geerlingguy.daemonize
 
 galaxy_info:
-  author: geerlingguy
+  role_name: mailhog
+  author: buluma
   description: "MailHog for Linux"
   company: "Midwestern Mac, LLC"
   license: "license (BSD, MIT)"
-  min_ansible_version: 1.8
+  min_ansible_version: 2.4
   platforms:
     - name: EL
       versions:
-      - all
+        - all
     - name: Ubuntu
       versions:
-      - all
+        - all
     - name: Debian
       versions:
-      - all
+        - all
   galaxy_tags:
     - development
     - web
     - system
     - mail
+    - mailhog

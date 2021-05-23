@@ -2,7 +2,7 @@
 services: docker
 
 env:
-  - distro: centos8
+  # - distro: centos8
   - distro: centos7
   - distro: centos6
 #  - distro: ubuntu1604
