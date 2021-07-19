@@ -44,6 +44,7 @@ jobs:
           - centos8
           - rockylinux8
           - ubuntu1804
+          - ubuntu2004
 
     steps:
       - name: Check out the codebase.
