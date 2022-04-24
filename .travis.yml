@@ -1,30 +1,29 @@
 ---
-services: docker
+#
+# Ansible managed
+#
+language: python
 
-env:
-  # - distro: centos8
-  - distro: centos7
-  - distro: centos6
-#  - distro: ubuntu1604
-#  - distro: ubuntu1404
+os: linux
+dist: xenial
+
+python:
+  - "3.9"
+
+services:
+  - docker
+
+cache:
+  - pip
+
+install:
+  - pip install --upgrade pip
+  - pip install ansible ansible-lint yamllint
 
 script:
-  # Configure test script so we can run extra tests after playbook is run.
-  - export container_id=$(date +%s)
-  - export cleanup=false
-
-  # Download test shim.
-  - wget -O ${PWD}/tests/test.sh https://gist.githubusercontent.com/buluma/3e4a443e0e2cfdffa9137edff909917e/raw/
-  - chmod +x ${PWD}/tests/test.sh
-
-  # Run tests.
-  - ${PWD}/tests/test.sh
-
-  # Send an email via mhsendmail.
-  - 'docker exec --tty ${container_id} env TERM=xterm sh -c "cat /etc/ansible/roles/role_under_test/tests/message | /opt/mailhog/mhsendmail johndoe@example.com"'
-
-  # Test retrieving messages via MailHog API.
-  - 'docker exec --tty ${container_id} env TERM=xterm sh -c "curl http://localhost:8025/api/v2/messages | grep id"'
+  - yamllint .
+  - ansible-lint
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  email: false

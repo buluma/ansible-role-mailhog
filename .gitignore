@@ -1,2 +1,6 @@
-*.retry
-tests/test.sh
+.molecule
+*.log
+*.swp
+.tox
+.cache
+.DS_Store

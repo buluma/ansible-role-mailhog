@@ -1,0 +1,8 @@
+---
+#
+# Ansible managed
+#
+repository:
+  description: MailHog for Linux
+  homepage: https://buluma.github.io/
+  topics: development, web, system, mail, mailhog, ansible, molecule, tox, playbook, hacktoberfest

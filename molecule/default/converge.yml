@@ -9,7 +9,7 @@
       when: ansible_os_family == 'Debian'
 
     - name: Ensure build dependencies are installed (RedHat).
-      package:
+      ansible.builtin.package:
         name:
           - "@Development tools"
           - tar
@@ -20,7 +20,7 @@
       when: ansible_os_family == 'RedHat'
 
     - name: Ensure build dependencies are installed (Debian).
-      apt:
+      ansible.builtin.apt:
         name:
           - build-essential
           - tar
@@ -36,7 +36,7 @@
 
   post_tasks:
     - name: Copy test message into place.
-      copy:
+      ansible.builtin.copy:
         src: test-message
         dest: /tmp/test-message
         mode: 0644
@@ -46,7 +46,7 @@
       changed_when: false
 
     - name: Test retrieiving messages from the MailHog API.
-      uri:
+      ansible.builtin.uri:
         url: http://localhost:8025/api/v2/messages
       register: result
       until: result.status == 200
