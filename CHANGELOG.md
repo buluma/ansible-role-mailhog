@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-mailhog/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.1.5...HEAD)
+
+**Merged pull requests:**
+
+- Bump buluma/gh-action-auto-merge-dependabot-updates from 1.0.4 to 1.0.5 [\#4](https://github.com/buluma/ansible-role-mailhog/pull/4) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [2.1.5](https://github.com/buluma/ansible-role-mailhog/tree/2.1.5) (2022-03-03)
 
 [Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.1.4...2.1.5)
