@@ -32,7 +32,7 @@
 
   roles:
     - geerlingguy.daemonize
-    - buluma.mailhog
+    - ansible-role-mailhog
 
   post_tasks:
     - name: Copy test message into place.
