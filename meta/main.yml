@@ -1,14 +1,11 @@
 ---
-dependencies:
-  - geerlingguy.daemonize
-
 galaxy_info:
   role_name: mailhog
   author: buluma
-  description: "MailHog for Linux"
+  description: MailHog for Linux
   company: ShadowNet
   license: Apache-2.0
-  min_ansible_version: 2.4
+  min_ansible_version: "2.4"
   platforms:
     - name: EL
       versions:
@@ -25,3 +22,5 @@ galaxy_info:
     - system
     - mail
     - mailhog
+dependencies:
+  - geerlingguy.daemonize

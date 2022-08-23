@@ -21,7 +21,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       when: ansible_os_family == 'Debian'
 
     - name: Ensure build dependencies are installed (RedHat).
-      package:
+      ansible.builtin.package:
         name:
           - "@Development tools"
           - tar
@@ -32,7 +32,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       when: ansible_os_family == 'RedHat'
 
     - name: Ensure build dependencies are installed (Debian).
-      apt:
+      ansible.builtin.apt:
         name:
           - build-essential
           - tar
@@ -48,7 +48,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   post_tasks:
     - name: Copy test message into place.
-      copy:
+      ansible.builtin.copy:
         src: test-message
         dest: /tmp/test-message
         mode: 0644
@@ -58,7 +58,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       changed_when: false
 
     - name: Test retrieiving messages from the MailHog API.
-      uri:
+      ansible.builtin.uri:
         url: http://localhost:8025/api/v2/messages
       register: result
       until: result.status == 200
@@ -126,7 +126,7 @@ If you find issues, please register them in [GitHub](https://github.com/buluma/a
 
 ## [License](#license)
 
-license (BSD, MIT)
+Apache-2.0
 
 ## [Author Information](#author-information)
 
