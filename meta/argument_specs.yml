@@ -1,0 +1,10 @@
+---
+#
+# Ansible managed
+#
+argument_specs:
+  main:
+    short_description: MailHog for Linux
+    description: >
+      MailHog for Linux
+    author: Michael Buluma
