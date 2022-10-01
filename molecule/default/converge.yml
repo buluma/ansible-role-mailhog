@@ -31,7 +31,7 @@
       when: ansible_os_family == 'Debian'
 
   roles:
-    - geerlingguy.daemonize
+    - buluma.daemonize
     - ansible-role-mailhog
 
   post_tasks:
