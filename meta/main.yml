@@ -23,4 +23,4 @@ galaxy_info:
     - mail
     - mailhog
 dependencies:
-  - role: geerlingguy.daemonize
+  - role: buluma.daemonize

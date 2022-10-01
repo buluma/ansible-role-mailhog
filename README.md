@@ -43,7 +43,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       when: ansible_os_family == 'Debian'
 
   roles:
-    - geerlingguy.daemonize
+    - buluma.daemonize
     - buluma.mailhog
 
   post_tasks:
@@ -91,7 +91,7 @@ mailhog_daemonize_bin_path: /usr/sbin/daemonize
 
 Most roles require some kind of preparation, this is done in `molecule/default/prepare.yml`. This role has a "hard" dependency on the following roles:
 
-- geerlingguy.daemonize
+- buluma.daemonize
 ## [Context](#context)
 
 This role is a part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.github.io/) for further information.
