@@ -1,4 +1,4 @@
-# [mailhog](#mailhog)
+# [Ansible role mailhog](#mailhog)
 
 MailHog for Linux
 
