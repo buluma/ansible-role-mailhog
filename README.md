@@ -2,9 +2,9 @@
 
 MailHog for Linux
 
-|GitHub|GitLab|Downloads|Version|Issues|Pull Requests|
-|------|------|-------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-mailhog/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-mailhog/actions/workflows/molecule.yml)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-mailhog/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-mailhog)|[![downloads](https://img.shields.io/ansible/role/d/4757)](https://galaxy.ansible.com/buluma/mailhog)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-mailhog.svg)](https://github.com/buluma/ansible-role-mailhog/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-mailhog.svg)](https://github.com/buluma/ansible-role-mailhog/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-mailhog.svg)](https://github.com/buluma/ansible-role-mailhog/pulls/)|
+|GitHub|Version|Issues|Pull Requests|
+|------|-------|------|-------------|
+|[![github](https://github.com/buluma/ansible-role-mailhog/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-mailhog/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-mailhog.svg)](https://github.com/buluma/ansible-role-mailhog/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-mailhog.svg)](https://github.com/buluma/ansible-role-mailhog/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-mailhog.svg)](https://github.com/buluma/ansible-role-mailhog/pulls/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -93,10 +93,10 @@ mailhog_daemonize_bin_path: /usr/sbin/daemonize
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
-| Requirement | GitHub | GitLab |
+| Requirement | GitHub | Version |
 |-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-bootstrap)|
-|[buluma.daemonize](https://galaxy.ansible.com/buluma/daemonize)|[![Build Status GitHub](https://github.com/buluma/ansible-role-daemonize/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-daemonize/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-daemonize/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-daemonize)|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-bootstrap.svg)](https://github.com/shadowwalker/ansible-role-bootstrap)|
+|[buluma.daemonize](https://galaxy.ansible.com/buluma/daemonize)|[![Build Status GitHub](https://github.com/buluma/ansible-role-daemonize/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-daemonize/actions)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-daemonize.svg)](https://github.com/shadowwalker/ansible-role-daemonize)|
 
 ## [Dependencies](#dependencies)
 
@@ -142,7 +142,6 @@ If you find issues, please register them in [GitHub](https://github.com/buluma/a
 
 [buluma](https://buluma.github.io/)
 
-Please consider [sponsoring me](https://github.com/sponsors/buluma).
 
 ### [Special Thanks](#special-thanks)
 
