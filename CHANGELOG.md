@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/buluma/ansible-role-mailhog/tree/HEAD)
+
+[Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.2.0...HEAD)
+
+**Merged pull requests:**
+
+- Bump actions/setup-python from 2 to 5 [\#15](https://github.com/buluma/ansible-role-mailhog/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [2.2.0](https://github.com/buluma/ansible-role-mailhog/tree/2.2.0) (2024-01-06)
 
 [Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.1.6...2.2.0)
