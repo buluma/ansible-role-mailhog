@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/buluma/ansible-role-mailhog/tree/HEAD)
+## [2.2.1](https://github.com/buluma/ansible-role-mailhog/tree/2.2.1) (2024-01-20)
 
-[Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.2.0...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.2.0...2.2.1)
 
 **Merged pull requests:**
 
