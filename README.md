@@ -131,9 +131,9 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/buluma/enterpriselinux/general)|8, 9|
-|[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|all|
-|[Debian](https://hub.docker.com/repository/docker/buluma/debian/general)|all|
+|[EL](https://hub.docker.com/r/buluma/enterpriselinux)|8, 9|
+|[Ubuntu](https://hub.docker.com/r/buluma/ubuntu)|all|
+|[Debian](https://hub.docker.com/r/buluma/debian)|all|
 
 The minimum version of Ansible required is 2.4, tests have been done to:
 
