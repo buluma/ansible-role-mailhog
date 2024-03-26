@@ -40,4 +40,4 @@
   when: "ansible_service_mgr == 'systemd'"
 
 - name: Ensure mailhog is enabled and will start on boot.
-  ansible.builtin.service: name=mailhog state=started enabled=yes
+  ansible.builtin.service: name=mailhog state=started enabled=true
