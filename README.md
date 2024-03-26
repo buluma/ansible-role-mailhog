@@ -73,8 +73,8 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   roles:
     - role: buluma.bootstrap
@@ -89,9 +89,9 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 ```yaml
 ---
 mailhog_install_dir: /opt/mailhog
-mailhog_version: 1.0.0
+mailhog_version: "1.0.0"
 mailhog_binary_url: "https://github.com/mailhog/MailHog/releases/download/v{{ mailhog_version }}/MailHog_linux_amd64"
-mhsendmail_version: 0.2.0
+mhsendmail_version: "0.2.0"
 mhsendmail_binary_url: "https://github.com/mailhog/mhsendmail/releases/download/v{{ mhsendmail_version }}/mhsendmail_linux_amd64"
 
 # Path to daemonize, which is used to launch MailHog via init script.
