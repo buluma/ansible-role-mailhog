@@ -6,6 +6,7 @@
 
 **Closed issues:**
 
+- Update action [\#13](https://github.com/buluma/ansible-role-mailhog/issues/13)
 - rebuild action [\#12](https://github.com/buluma/ansible-role-mailhog/issues/12)
 
 **Merged pull requests:**
