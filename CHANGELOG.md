@@ -4,6 +4,11 @@
 
 [Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.2.1...HEAD)
 
+**Closed issues:**
+
+- Update action [\#13](https://github.com/buluma/ansible-role-mailhog/issues/13)
+- rebuild action [\#12](https://github.com/buluma/ansible-role-mailhog/issues/12)
+
 **Merged pull requests:**
 
 - Bump buluma/dependabot-auto-merge-action from 2.1.1 to 2.1.2 [\#22](https://github.com/buluma/ansible-role-mailhog/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
