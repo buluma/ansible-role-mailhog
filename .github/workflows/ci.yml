@@ -1,68 +1,58 @@
----
-name: CI
-'on':
-  pull_request:
-  push:
-    branches:
-      - master
-  schedule:
-    - cron: "0 3 * * 3"
-
 defaults:
   run:
-    working-directory: 'buluma.mailhog'
-
+    working-directory: buluma.mailhog
 jobs:
-
   lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the codebase.
-        uses: actions/checkout@v4
-        with:
-          path: 'buluma.mailhog'
+    - name: Check out the codebase.
+      uses: actions/checkout@v4
+      with:
+        path: buluma.mailhog
+    - name: Set up Python 3.
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.x
+    - name: Install test dependencies.
+      run: pip3 install yamllint
+    - name: Lint code.
+      run: 'yamllint .
 
-      - name: Set up Python 3.
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install test dependencies.
-        run: pip3 install yamllint
-
-      - name: Lint code.
-        run: |
-          yamllint .
+        '
   molecule:
     name: Molecule
     runs-on: ubuntu-latest
+    steps:
+    - name: Check out the codebase.
+      uses: actions/checkout@v4
+      with:
+        path: buluma.mailhog
+    - name: Set up Python 3.
+      uses: actions/setup-python@v5
+      with:
+        python-version: 3.x
+    - name: Install test dependencies.
+      run: pip3 install ansible molecule[docker] docker
+    - env:
+        ANSIBLE_FORCE_COLOR: '1'
+        MOLECULE_DISTRO: ${{ matrix.distro }}
+        PY_COLORS: '1'
+      name: Run Molecule tests.
+      run: molecule test
     strategy:
       matrix:
         distro:
-          - centos7
-          - centos8
-          - rockylinux8
-          - ubuntu1804
-          - ubuntu2004
-
-    steps:
-      - name: Check out the codebase.
-        uses: actions/checkout@v4
-        with:
-          path: 'buluma.mailhog'
-
-      - name: Set up Python 3.
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-
-      - name: Install test dependencies.
-        run: pip3 install ansible molecule[docker] docker
-
-      - name: Run Molecule tests.
-        run: molecule test
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.distro }}
+        - centos7
+        - centos8
+        - rockylinux8
+        - ubuntu1804
+        - ubuntu2004
+name: CI
+'on':
+  pull_request: null
+  push:
+    branches:
+    - master
+  schedule:
+  - cron: 0 3 * * 3

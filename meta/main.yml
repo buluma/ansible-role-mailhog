@@ -1,9 +1,16 @@
 ---
+dependencies:
+  - role: buluma.daemonize
 galaxy_info:
-  role_name: mailhog
   author: buluma
-  description: MailHog for Linux
   company: ShadowNet
+  description: MailHog for Linux
+  galaxy_tags:
+    - development
+    - web
+    - system
+    - mail
+    - mailhog
   license: Apache-2.0
   min_ansible_version: "2.4"
   platforms:
@@ -16,11 +23,4 @@ galaxy_info:
     - name: Debian
       versions:
         - all
-  galaxy_tags:
-    - development
-    - web
-    - system
-    - mail
-    - mailhog
-dependencies:
-  - role: buluma.daemonize
+  role_name: mailhog

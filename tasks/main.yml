@@ -1,46 +1,41 @@
 ---
-# Install and configure MailHog.
 - name: Ensure mailhog install directory exists.
   ansible.builtin.file:
-    path: "{{ mailhog_install_dir }}"
-    owner: root
     group: root
-    state: directory
     mode: "0755"
-
+    owner: root
+    path: "{{ mailhog_install_dir }}"
+    state: directory
 - name: Download MailHog and mhsendmail binaries.
   ansible.builtin.get_url:
-    url: "{{ item.url }}"
     dest: "{{ item.dest }}"
-    owner: root
     group: root
     mode: "0755"
+    owner: root
+    url: "{{ item.url }}"
   with_items:
-    - url: "{{ mailhog_binary_url }}"
-      dest: "{{ mailhog_install_dir }}/mailhog"
-    - url: "{{ mhsendmail_binary_url }}"
-      dest: "{{ mailhog_install_dir }}/mhsendmail"
-
+    - dest: "{{ mailhog_install_dir }}/mailhog"
+      url: "{{ mailhog_binary_url }}"
+    - dest: "{{ mailhog_install_dir }}/mhsendmail"
+      url: "{{ mhsendmail_binary_url }}"
 - name: Copy mailhog init script into place.
   ansible.builtin.template:
-    src: mailhog.init.j2
     dest: /etc/init.d/mailhog
-    owner: root
     group: root
     mode: "0755"
-  when: "ansible_service_mgr != 'systemd'"
-
+    owner: root
+    src: mailhog.init.j2
+  when: ansible_service_mgr != 'systemd'
 - name: Copy mailhog systemd unit file into place (for systemd systems).
   ansible.builtin.template:
-    src: mailhog.unit.j2
     dest: /etc/systemd/system/mailhog.service
-    owner: root
     group: root
     mode: "0755"
-  when: "ansible_service_mgr == 'systemd'"
-
+    owner: root
+    src: mailhog.unit.j2
+  when: ansible_service_mgr == 'systemd'
 - name: Ensure mailhog is enabled and will start on boot.
   ansible.builtin.service:
+    enabled: "true"
     name: mailhog
     state: started
-    enabled: "true"
