@@ -11,63 +11,66 @@ MailHog for Linux
 This example is taken from [`molecule/default/converge.yml`](https://github.com/buluma/ansible-role-mailhog/blob/master/molecule/default/converge.yml) and is tested on each push, pull request and release.
 
 ```yaml
-- become: false
-  hosts: all
-  name: Converge
-  post_tasks:
-  - ansible.builtin.copy:
-      dest: /tmp/test-message
-      mode: 420
-      src: test-message
-    name: Copy test message into place.
-  - changed_when: false
-    name: Send an email via mhsendmail.
-    shell: cat /tmp/test-message | /opt/mailhog/mhsendmail johndoe@example.com
-  - ansible.builtin.uri:
-      url: http://localhost:8025/api/v2/messages
-    delay: 1
-    name: Test retrieiving messages from the MailHog API.
-    register: result
-    retries: 60
-    until: result.status == 200
-  pre_tasks:
-  - apt: update_cache=true cache_valid_time=600
-    name: Update apt cache.
-    when: ansible_os_family == 'Debian'
-  - ansible.builtin.package:
-      name:
-      - '@Development tools'
-      - tar
-      - unzip
-      - net-tools
-      - curl
-      state: present
-    name: Ensure build dependencies are installed (RedHat).
-    when: ansible_os_family == 'RedHat'
-  - ansible.builtin.apt:
-      name:
-      - build-essential
-      - tar
-      - unzip
-      - net-tools
-      - curl
-      state: present
-    name: Ensure build dependencies are installed (Debian).
-    when: ansible_os_family == 'Debian'
-  roles:
-  - buluma.daemonize
-  - ansible-role-mailhog
+---
+  - become: false
+    hosts: all
+    name: Converge
+    post_tasks:
+      - ansible.builtin.copy:
+          dest: /tmp/test-message
+          mode: 420
+          src: test-message
+        name: Copy test message into place.
+      - changed_when: false
+        name: Send an email via mhsendmail.
+        shell: cat /tmp/test-message | /opt/mailhog/mhsendmail 
+          johndoe@example.com
+      - ansible.builtin.uri:
+          url: http://localhost:8025/api/v2/messages
+        delay: 1
+        name: Test retrieiving messages from the MailHog API.
+        register: result
+        retries: 60
+        until: result.status == 200
+    pre_tasks:
+      - apt: update_cache=true cache_valid_time=600
+        name: Update apt cache.
+        when: ansible_os_family == 'Debian'
+      - ansible.builtin.package:
+          name:
+            - '@Development tools'
+            - tar
+            - unzip
+            - net-tools
+            - curl
+          state: present
+        name: Ensure build dependencies are installed (RedHat).
+        when: ansible_os_family == 'RedHat'
+      - ansible.builtin.apt:
+          name:
+            - build-essential
+            - tar
+            - unzip
+            - net-tools
+            - curl
+          state: present
+        name: Ensure build dependencies are installed (Debian).
+        when: ansible_os_family == 'Debian'
+    roles:
+      - buluma.daemonize
+      - ansible-role-mailhog
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-mailhog/blob/master/molecule/default/prepare.yml):
 
 ```yaml
-- become: true
-  gather_facts: false
-  hosts: all
-  name: Prepare
-  roles:
-  - role: buluma.bootstrap
+---
+  - become: true
+    gather_facts: false
+    hosts: all
+    name: Prepare
+    roles:
+      - role: buluma.bootstrap
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -77,13 +80,15 @@ Also see a [full explanation and example](https://buluma.github.io/how-to-use-th
 The default values for the variables are set in [`defaults/main.yml`](https://github.com/buluma/ansible-role-mailhog/blob/master/defaults/main.yml):
 
 ```yaml
-mailhog_binary_url: https://github.com/mailhog/MailHog/releases/download/v{{ mailhog_version
-  }}/MailHog_linux_amd64
+---
+mailhog_binary_url: https://github.com/mailhog/MailHog/releases/download/v{{ 
+  mailhog_version }}/MailHog_linux_amd64
 mailhog_daemonize_bin_path: /usr/sbin/daemonize
 mailhog_install_dir: /opt/mailhog
 mailhog_version: 1.0.0
-mhsendmail_binary_url: https://github.com/mailhog/mhsendmail/releases/download/v{{
-  mhsendmail_version }}/mhsendmail_linux_amd64
+mhsendmail_binary_url: 
+  https://github.com/mailhog/mhsendmail/releases/download/v{{ mhsendmail_version
+  }}/mhsendmail_linux_amd64
 mhsendmail_version: 0.2.0
 ```
 
