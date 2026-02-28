@@ -18,7 +18,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   post_tasks:
   - ansible.builtin.copy:
       dest: /tmp/test-message
-      mode: 420
+      mode: "0644"
       src: test-message
     name: Copy test message into place.
   - changed_when: false
@@ -139,3 +139,4 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 ## [Author Information](#author-information)
 
 [buluma](https://buluma.github.io/)
+
