@@ -1,31 +1,17 @@
 ---
-- become: false
 - name: Converge
   hosts: all
-  name: Converge
-  post_tasks:
-    - ansible.builtin.copy:
-        dest: /tmp/test-message
-        mode: "0644"
-        src: test-message
-      name: Copy test message into place.
-    - changed_when: false
-      name: Send an email via mhsendmail.
-      shell: cat /tmp/test-message | /opt/mailhog/mhsendmail johndoe@example.com
-    - ansible.builtin.uri:
-        url: http://localhost:8025/api/v2/messages
-      delay: 1
-      name: Test retrieiving messages from the MailHog API.
-      register: result
-      retries: 60
-      until: result.status == 200
+  become: false
+  gather_facts: true
+
   pre_tasks:
-    - ansible.builtin.apt:
-   update_cache: true
-   cache_valid_time: 600
-      name: Update apt cache.
+    - name: Update apt cache.
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 600
       when: ansible_facts['os_family'] == 'Debian'
-    - ansible.builtin.package:
+    - name: Ensure build dependencies are installed (RedHat).
+      ansible.builtin.package:
         name:
           - "@Development tools"
           - tar
@@ -33,9 +19,9 @@
           - net-tools
           - curl
         state: present
-      name: Ensure build dependencies are installed (RedHat).
       when: ansible_facts['os_family'] == 'RedHat'
-    - ansible.builtin.apt:
+    - name: Ensure build dependencies are installed (Debian).
+      ansible.builtin.apt:
         name:
           - build-essential
           - tar
@@ -43,8 +29,26 @@
           - net-tools
           - curl
         state: present
-      name: Ensure build dependencies are installed (Debian).
       when: ansible_facts['os_family'] == 'Debian'
+
   roles:
-    - buluma.daemonize
-    - ansible-role-mailhog
+    - role: buluma.daemonize
+    - role: buluma.mailhog
+
+  post_tasks:
+    - name: Copy test message into place.
+      ansible.builtin.copy:
+        dest: /tmp/test-message
+        mode: "0644"
+        src: test-message
+    - name: Send an email via mhsendmail.
+      ansible.builtin.shell:
+        cmd: cat /tmp/test-message | /opt/mailhog/mhsendmail johndoe@example.com
+      changed_when: false
+    - name: Test retrieiving messages from the MailHog API.
+      ansible.builtin.uri:
+        url: http://localhost:8025/api/v2/messages
+      delay: 1
+      register: result
+      retries: 60
+      until: result.status == 200
