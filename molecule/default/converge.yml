@@ -23,7 +23,7 @@
    update_cache: true
    cache_valid_time: 600
       name: Update apt cache.
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts['os_family'] == 'Debian'
     - ansible.builtin.package:
         name:
           - "@Development tools"
@@ -33,7 +33,7 @@
           - curl
         state: present
       name: Ensure build dependencies are installed (RedHat).
-      when: ansible_os_family == 'RedHat'
+      when: ansible_facts['os_family'] == 'RedHat'
     - ansible.builtin.apt:
         name:
           - build-essential
@@ -43,7 +43,7 @@
           - curl
         state: present
       name: Ensure build dependencies are installed (Debian).
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts['os_family'] == 'Debian'
   roles:
     - buluma.daemonize
     - ansible-role-mailhog
