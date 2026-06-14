@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/buluma/ansible-role-mailhog/tree/HEAD)
+## [26.6.0](https://github.com/buluma/ansible-role-mailhog/tree/26.6.0) (2026-06-14)
 
-[Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.2.1...HEAD)
+[Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.2.1...26.6.0)
 
 **Closed issues:**
 
@@ -11,6 +11,13 @@
 
 **Merged pull requests:**
 
+- Bump docker/setup-buildx-action from 3 to 4 [\#33](https://github.com/buluma/ansible-role-mailhog/pull/33) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible/ansible-lint from 26.1.1 to 26.2.0 [\#32](https://github.com/buluma/ansible-role-mailhog/pull/32) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/setup-python from 5 to 6 [\#31](https://github.com/buluma/ansible-role-mailhog/pull/31) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump actions/checkout from 4 to 6 [\#30](https://github.com/buluma/ansible-role-mailhog/pull/30) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump ansible/ansible-lint from 24.7.0 to 24.12.0 [\#29](https://github.com/buluma/ansible-role-mailhog/pull/29) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump release-drafter/release-drafter from 5 to 6 [\#24](https://github.com/buluma/ansible-role-mailhog/pull/24) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Bump buluma/dependabot-auto-merge-action from 2.1.1 to 2.1.2 [\#23](https://github.com/buluma/ansible-role-mailhog/pull/23) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump buluma/dependabot-auto-merge-action from 2.1.1 to 2.1.2 [\#22](https://github.com/buluma/ansible-role-mailhog/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Bump release-drafter/release-drafter from 5 to 6 [\#21](https://github.com/buluma/ansible-role-mailhog/pull/21) ([dependabot[bot]](https://github.com/apps/dependabot))
 
