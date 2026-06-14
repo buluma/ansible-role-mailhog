@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  become: true
+  gather_facts: false
+
+  tasks:
+    - name: Check if mailhog binary exists
+      ansible.builtin.stat:
+        path: /opt/mailhog/mailhog
+      register: mailhog_binary
+
+    - name: Assert mailhog binary is present
+      ansible.builtin.assert:
+        that:
+          - mailhog_binary.stat.exists
+        quiet: true
