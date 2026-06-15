@@ -1,5 +1,9 @@
 # Changelog
 
+## [26.6.1](https://github.com/buluma/ansible-role-mailhog/tree/26.6.1) (2026-06-15)
+
+[Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/26.6.0...26.6.1)
+
 ## [26.6.0](https://github.com/buluma/ansible-role-mailhog/tree/26.6.0) (2026-06-14)
 
 [Full Changelog](https://github.com/buluma/ansible-role-mailhog/compare/2.2.1...26.6.0)
