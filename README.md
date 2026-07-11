@@ -12,40 +12,29 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- become: false
+- name: Converge
   hosts: all
-  name: Converge
-  post_tasks:
-    - ansible.builtin.copy:
-        dest: /tmp/test-message
-        mode: "0644"
-        src: test-message
-      name: Copy test message into place.
-    - changed_when: false
-      name: Send an email via mhsendmail.
-      shell: cat /tmp/test-message | /opt/mailhog/mhsendmail johndoe@example.com
-    - ansible.builtin.uri:
-        url: http://localhost:8025/api/v2/messages
-      delay: 1
-      name: Test retrieiving messages from the MailHog API.
-      register: result
-      retries: 60
-      until: result.status == 200
+  become: false
+  gather_facts: true
+
   pre_tasks:
-    - apt: update_cache=true cache_valid_time=600
-      name: Update apt cache.
-      when: ansible_os_family == 'Debian'
-    - ansible.builtin.package:
+    - name: Update apt cache.
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 600
+      when: ansible_facts['os_family'] == 'Debian'
+    - name: Ensure build dependencies are installed (RedHat).
+      ansible.builtin.package:
         name:
           - "@Development tools"
           - tar
           - unzip
           - net-tools
-          - curl
+          - curl-minimal
         state: present
-      name: Ensure build dependencies are installed (RedHat).
-      when: ansible_os_family == 'RedHat'
-    - ansible.builtin.apt:
+      when: ansible_facts['os_family'] == 'RedHat'
+    - name: Ensure build dependencies are installed (Debian).
+      ansible.builtin.apt:
         name:
           - build-essential
           - tar
@@ -53,21 +42,47 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
           - net-tools
           - curl
         state: present
-      name: Ensure build dependencies are installed (Debian).
-      when: ansible_os_family == 'Debian'
+      when: ansible_facts['os_family'] == 'Debian'
+
   roles:
-    - buluma.daemonize
-    - ansible-role-mailhog
+    - role: buluma.daemonize
+    - role: buluma.mailhog
+
+  post_tasks:
+    - name: Copy test message into place.
+      ansible.builtin.copy:
+        dest: /tmp/test-message
+        mode: "0644"
+        src: test-message
+    - name: Send an email via mhsendmail.
+      ansible.builtin.shell:
+        cmd: cat /tmp/test-message | /opt/mailhog/mhsendmail johndoe@example.com
+      changed_when: false
+    - name: Test retrieiving messages from the MailHog API.
+      ansible.builtin.uri:
+        url: http://localhost:8025/api/v2/messages
+      delay: 1
+      register: result
+      retries: 60
+      until: result.status == 200
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-mailhog/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
-- become: true
-  gather_facts: false
+- name: Prepare
   hosts: all
-  name: Prepare
+  become: true
+  gather_facts: false
+
+  pre_tasks:
+    - name: Install sudo if missing
+      ansible.builtin.raw: "{{ ansible_pkg_mgr | default('dnf') }} install -y sudo"
+      become: false
+      changed_when: false
+      failed_when: false
+
   roles:
     - role: buluma.bootstrap
 ```
@@ -117,15 +132,16 @@ Here is an overview of related roles:
 
 ## [Compatibility](#compatibility)
 
-This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
+This role has been tested on these [container images](https://hub.docker.com/u/buluma):
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
-|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
-|[Debian](https://hub.docker.com/r/robertdebock/debian)|all|
+|[EL](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Debian](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Fedora](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
+|[Ubuntu](https://hub.docker.com/r/buluma/docker-molecule-images)|all|
 
-The minimum version of Ansible required is 2.4, tests have been done on:
+The minimum version of Ansible required is 2.12, tests have been done on:
 
 - The previous version.
 - The current version.
@@ -141,6 +157,3 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 
 [buluma](https://buluma.github.io/)
 
-### Get Help
-- Report issues: https://github.com/buluma/ansible-role-mailhog/issues/new
-- See docs: https://docs.ansible.com/collection/gallery/ansible-role-mailhog
