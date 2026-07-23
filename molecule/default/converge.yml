@@ -13,7 +13,9 @@
     - name: Ensure build dependencies are installed (RedHat).
       ansible.builtin.package:
         name:
-          - "@development-tools"
+          # Fedora's group id is "development-tools"; RHEL/Rocky/AlmaLinux
+          # use the older, unsuffixed "development".
+          - "@{{ 'development-tools' if ansible_facts['distribution'] == 'Fedora' else 'development' }}"
           - tar
           - unzip
           - net-tools
