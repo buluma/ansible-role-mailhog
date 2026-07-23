@@ -13,7 +13,7 @@
     - name: Ensure build dependencies are installed (RedHat).
       ansible.builtin.package:
         name:
-          - "@Development tools"
+          - "@development-tools"
           - tar
           - unzip
           - net-tools
