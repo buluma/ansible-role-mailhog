@@ -120,7 +120,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 mailhog_binary_url: "https://github.com/mailhog/MailHog/releases/download/v{{ mailhog_version }}/MailHog_linux_amd64"
 mailhog_daemonize_bin_path: /usr/sbin/daemonize
 mailhog_install_dir: /opt/mailhog
-mailhog_version: "1.0.0"
+mailhog_version: "1.0.1"
 mhsendmail_binary_url: "https://github.com/mailhog/mhsendmail/releases/download/v{{ mhsendmail_version }}/mhsendmail_linux_amd64"
 mhsendmail_version: "0.2.0"
 ```
