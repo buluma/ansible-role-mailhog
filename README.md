@@ -26,7 +26,9 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     - name: Ensure build dependencies are installed (RedHat).
       ansible.builtin.package:
         name:
-          - "@Development tools"
+          # Fedora's group id is "development-tools"; RHEL/Rocky/AlmaLinux
+          # use the older, unsuffixed "development".
+          - "@{{ 'development-tools' if ansible_facts['distribution'] == 'Fedora' else 'development' }}"
           - tar
           - unzip
           - net-tools
